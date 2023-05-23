@@ -63,6 +63,7 @@ def create_model(args, load_head=False, colo=False):
                               )}
             model.load_state_dict(filtered_dict, strict=False)
         else:
-            model.load_state_dict(state['state_dict'], strict=True)
+            state_dict = state['state_dict'] if 'state_dict' in state else state
+            model.load_state_dict(state_dict, strict=True)
 
     return model
